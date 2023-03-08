@@ -6,6 +6,8 @@ const playersController = require('./controllers/players.js');
 
 app.set('view engine', 'ejs');
 
+app.use(express.static('public'));
+
 app.use('/players', playersController);
 
 app.get('/', (req, res) => {
