@@ -11,7 +11,12 @@ const playersSchema = new mongoose.Schema(
         type: String,
         required: [true, "Please provide the URL for an image"],
         unique: [true, "I don't want the same player picture multiple times"]
-       }, 
+       },
+       
+       team: {
+        type: String,
+        required: [true, "Please provide a team"]
+       },
 
     },
    {

@@ -1,0 +1,20 @@
+<%- include('../partials/headAndNav', {pageName: personToEdit.name + " is getting updated"}) %>
+
+    <h1>I'm in here editing <%= personToEdit.name %></h1>
+    <form method="POST" action="/players/<%= personToEdit._id %>?_method=PUT">
+        <div>
+            <label for="name">Update the artist's name</label>
+            <input type="text" name="name" id="name" value=<%= personToEdit.name%>>
+        </div>
+        <div>
+            <label for="image">Update the artist's image</label>
+            <input type="text" name="image" id="image" value=<%= personToEdit.image %>>
+        </div>
+        <div>
+            <label for="team">What team did they play for</label>
+            <input type="text" name="team" id="team" value=<%= personToEdit.team %>>
+        </div>
+        <input type="submit" value="Edit <%= personToEdit.name %>">
+    </form>
+
+<%- include('../partials/footer') %>
