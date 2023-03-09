@@ -1,3 +1,8 @@
 <%- include('../partials/headAndNav.ejs') %>
 <h1>Here's a list of the best players</h1> 
+<% for(let i = 0; i < players.length; i++) { %>
+    <h3><%= players[i].name %></h3>
+    <img src="<%= players[i].image %>">
+    <% } %>
+}
 <%- include('../partials/footer.ejs') %>

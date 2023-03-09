@@ -1,0 +1,17 @@
+<%- include('../partials/headAndNav', {pageName: "Add a new baketball player"}) %>
+
+<h1>Add a new basketball player</h1>
+<form method="POST" action="/players">
+    <div>
+        <label for="name">Enter the player's name</label>
+        <input type="text" name="name" id="name">
+    </div>
+    <div>
+        <label for="image">Enter the URL for the image</label>
+        <input type="text" name="image" id="image">
+    </div>
+    <input type="submit" value="Submit new player">
+</form>
+
+
+<%- include('../partials/footer') %>
