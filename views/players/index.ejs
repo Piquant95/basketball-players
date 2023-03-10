@@ -1,12 +1,15 @@
 <%- include('../partials/headAndNav.ejs') %>
 <h1>Here's a list of the best players</h1> 
 <% for(let i = 0; i < players.length; i++) { %>
-    <a href=<%= "players[i]._id" %>>
-    <h3><%= players[i].name %></h3>
+    <a href="/players/<%= players[i]._id %>">
+    <h3>Name: <%= players[i].name %></h3>
+    <img src=<%= players[i].image %>>
     </a>
-    <h4><%= players[i].team %></h4>
-    <img src="<%= players[i].image %>">
+    <h4>Team: <%= players[i].team %></h4>
     <% } %>
-}
+    <button>
+        <a href="/players/seed">Seeds</a>
+    </button>
+
 <%- include('../partials/footer.ejs') %>
     

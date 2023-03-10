@@ -51,11 +51,6 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-
-router.get('/new', (req, res) => {
-    res.render('players/new.ejs')
-})
-
 router.get('/seed', async (req, res, next) => {
     try {
         const deletedOldOnes = await Players.deleteMany({});
@@ -69,21 +64,12 @@ router.get('/seed', async (req, res, next) => {
     }
 })
 
-
-router.post('/', async (req, res, next) => {
-    try {
-        console.log(req.body);
-        const newPlayer = await Players.create(req.body);
-        seedData.push(newPlayer);
-        console.log(newPlayer);
-        res.redirect('/players') 
-    } catch(err) {
-        console.log(err);
-        return next();
-    }
+router.get('/new', (req, res) => {
+    res.render('players/new.ejs')
 })
 
-router.get('/players/:id', async (req, res, next) => {
+
+router.get('/:id', async (req, res, next) => {
     try {
         console.log(req.params)
         const player = await Players.findById(req.params.id);
@@ -97,10 +83,8 @@ router.get('/players/:id', async (req, res, next) => {
         return next();
     }
 })
-        
-       
 
-router.get('/players/:id/edit', async (req, res, next) => {
+router.get('/:id/edit', async (req, res, next) => {
     try {
         const personToEdit = await Players.findById(req.params.id);
         console.log(personToEdit);
@@ -111,20 +95,37 @@ router.get('/players/:id/edit', async (req, res, next) => {
     }
 })
 
-router.put('/players/:id', async(req, res, next) => {
+router.post('/def', async (req, res, next) => {
+    try {
+        console.log(req.body);
+        const newPlayer = await Players.create(req.body);
+        seedData.push(newPlayer);
+        console.log(newPlayer);
+        res.redirect('/players') 
+    } catch(err) {
+        console.log(err);
+        return next();
+    }
+})
+
+        
+       
+
+
+router.put('/:id', async(req, res, next) => {
     try {
         console.log(req.params.id);
         console.log(req.body);
         const updateItem = await Players.findByIdAndUpdate(req.params.id, req.body);
         console.log(updateItem);
         res.redirect('/players');
-    } catch(veryNice) {
-        console.log(veryNice);
+    } catch(thanksJosh) {
+        console.log(thanksJosh);
         return next();
     }
 })
 
-router.delete('/players/:id', async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
     try {
         console.log(req.params);
         console.log("I'm hitting the delete route");
