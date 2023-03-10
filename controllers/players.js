@@ -83,5 +83,61 @@ router.post('/', async (req, res, next) => {
     }
 })
 
+router.get('/players/:id', async (req, res, next) => {
+    try {
+        console.log(req.params)
+        const player = await Players.findById(req.params.id);
+        console.log(player);
+        const context = {
+            player: player
+        }
+        res.render('players/show.ejs', context);
+    } catch(err) {
+        console.log(err);
+        return next();
+    }
+})
+        
+       
+
+router.get('/players/:id/edit', async (req, res, next) => {
+    try {
+        const personToEdit = await Players.findById(req.params.id);
+        console.log(personToEdit);
+        res.render('players/edit.ejs', {personToEdit: personToEdit})
+    } catch(itWorks) {
+        console.log(itWorks);
+        return next();
+    }
+})
+
+router.put('/players/:id', async(req, res, next) => {
+    try {
+        console.log(req.params.id);
+        console.log(req.body);
+        const updateItem = await Players.findByIdAndUpdate(req.params.id, req.body);
+        console.log(updateItem);
+        res.redirect('/players');
+    } catch(veryNice) {
+        console.log(veryNice);
+        return next();
+    }
+})
+
+router.delete('/players/:id', async (req, res, next) => {
+    try {
+        console.log(req.params);
+        console.log("I'm hitting the delete route");
+        const itemGettingDeleted = await Players.findByIdAndDelete(req.params.id);
+        console.log(itemGettingDeleted);
+        res.redirect('/players');
+    } catch(stuff) {
+        console.log(stuff);
+        return next();
+    }
+})
+
+
+
 
 module.exports = router;

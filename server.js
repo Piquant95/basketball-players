@@ -3,12 +3,15 @@ const app = express();
 
 
 const playersController = require('./controllers/players.js');
+const methodOverride = require('method-override');
 
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
 app.use(express.urlencoded({ extended: false }))
+
+app.use(methodOverride('_method'))
 
 app.use('/players', playersController);
 
